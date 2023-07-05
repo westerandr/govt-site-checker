@@ -19,6 +19,7 @@ Checks the online statuses of Samoan government websites.
 * Ministry of Communications and Information Technology
 * Ministry of Education, Sports and Culture
 * Ministry of Finance
+* Ministry of Foreign Affairs and Trade
 * Ministry of Health
 * Ministry of Justice and Courts Administration
 * Ministry of the Prime Minister and Cabinet
