@@ -1,10 +1,22 @@
 ---
-import { Image } from '@astrojs/image/components'
-import logo from '../assets/logo.png'
+import { Image } from "@astrojs/image/components";
+import logo from "../assets/logo.png";
 ---
 
-<header class="h-20 bg-slate-800 w-full">
-  <div class="flex justify-between px-5 mb-5 max-w-max md:max-w-xl lg:mx-w-2xl">
-
-  </div>
+<header class="h-20 bg-slate-800 w-full mb-9">
+  <nav class="bg-gray-800">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex h-24 items-center justify-center lg:justify-between">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <Image
+              class="block h-16 w-auto"
+              src={logo}
+              alt="Govt Site Checker Logo"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
 </header>
