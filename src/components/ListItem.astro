@@ -1,0 +1,25 @@
+---
+  const { title, url } = Astro.props
+---
+<li class="relative flex justify-between gap-x-6 mb-3">
+  <div class="flex gap-x-4">
+    <div class="min-w-0 flex-auto">
+      <p class="text-sm font-semibold leading-6 text-gray-900">
+        <span>
+          {title}
+        </span>
+      </p>
+      <a href={`https://${url}`} target="_blank" class="text-xs leading-6 text-blue-500 cursor-pointer underline z-20">{url}</a>
+    </div>
+  </div>
+  <div class="flex items-center gap-x-4">
+    <div class="hidden sm:flex sm:flex-col sm:items-end">
+      <div class="mt-1 flex items-center gap-x-1.5">
+        <div class="flex-none rounded-full bg-emerald-500/20 p-1">
+          <div class="h-1.5 w-1.5 rounded-full bg-emerald-500"></div>
+        </div>
+        <p class="text-xs leading-5 text-gray-500">Online</p>
+      </div>
+    </div>
+  </div>
+</li>
