@@ -16,6 +16,9 @@ import Header from '../components/Header.astro'
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 		<title>{title}</title>
 	</head>
 	<body>
@@ -25,7 +28,6 @@ import Header from '../components/Header.astro'
 </html>
 <style is:global>
 	html {
-		font-family: system-ui, sans-serif;
 		background-color: #F6F6F6;
 	}
 </style>
