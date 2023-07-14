@@ -49,4 +49,4 @@ Checks the online statuses of Samoan government websites.
 
 Open an issue or contact <andrewest_04@hotmail.com>
 
-Built with Astro
+Built with Astro & Inspired by [AWS Cloudping](https://www.cloudping.cloud/aws)
