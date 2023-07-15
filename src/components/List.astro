@@ -1,7 +1,7 @@
 ---
   import sitesData from '../assets/sites.json'
-  import ListItem from './ListItem.astro'
+  import ListItem from './ListItem.jsx'
 ---
-<ul role="list" class="divide-y divide-gray-100 w-7/12 mx-auto grid grid-cols-2 gap-x-11">
-  {sitesData.sites.map((site) => (<ListItem title={site.name} url={site.site} />))}
+<ul role="list" class="divide-y divide-gray-100 m-w-7/12 lg:w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-x-11">
+  {sitesData.sites.map((site) => (<ListItem client:load title={site.name} url={site.site} />))}
 </ul>
