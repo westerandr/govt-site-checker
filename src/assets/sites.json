@@ -1,5 +1,6 @@
 {
   "sites": [
+    { "site": "www.samoagovt.ws/", "name": "Government of Samoa"},
     { "site": "www.psc.gov.ws", "name": "Samoa Public Service Commission" },
     { "site": "www.audit.gov.ws", "name": "Samoa Audit Office" },
     { "site": "www.ag.gov.ws", "name": "Office of the Attorney General" },
@@ -27,10 +28,10 @@
     { "site": "www.lta.gov.ws", "name": "Land Transport Authority" },
     { "site": "www.nkfsamoa.org.ws", "name": "National Kidney Foundation Samoa" },
     { "site": "www.nus.edu.ws", "name": "National University of Samoa" },
-    { "site": "www.samoahouing.ws", "name": "Samoa Housing Corporation" },
+    { "site": "www.samoahousing.ws", "name": "Samoa Housing Corporation" },
     { "site": "www.sifa.ws", "name": "Samoa International Finance Authority" },
-    { "site": "www.samoaland.ws", "name": "Samoa Land Corporation" },
-    { "site": "www.samoalife.gov.ws", "name": "Samoa Life Assurance Corporation" },
+    { "site": "www.samoaland.gov.ws", "name": "Samoa Land Corporation" },
+    { "site": "www.samoalife.ws", "name": "Samoa Life Assurance Corporation" },
     { "site": "www.spasamoa.ws", "name": "Samoa Ports Authority" },
     { "site": "www.samoapost.ws", "name": "Samoa Post Office" },
     { "site": "www.publictrust.ws", "name": "Public Trust Office Samoa" },
@@ -38,7 +39,8 @@
     { "site": "www.samoatourism.org", "name": "Samoa Tourism Authority" },
     { "site": "www.swa.gov.ws", "name": "Samoa Water Authority" },
     { "site": "www.sros.org.ws", "name": "Scientific Research Organization of Samoa" },
-    { "site": "www.utos.gov.ws", "name": "Unit Trust of Samoa"},
-    { "site": "www.cbs.gov.ws", "name": "Central Bank of Samoa" }
+    { "site": "www.utos.ws", "name": "Unit Trust of Samoa"},
+    { "site": "www.cbs.gov.ws", "name": "Central Bank of Samoa" },
+    { "site": "www.samoapolice.ws", "name": "Samoa Police Prisons & Corrections Services" }
   ]
 }
