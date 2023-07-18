@@ -4,26 +4,25 @@ import Status from './Status.jsx'
 
 export default function ListItem(props){
   const [loading, setLoading] = React.useState(false);
+  const [fetched, setFetched] = React.useState(false)
   const [status, setStatus] = React.useState(false);
   const { title, url } = props
 
-  const isOk = (r) => r.ok || r.status === 200 || (r.status === 0 && r.type === 'opaque')
+  const isOk = (data) => data.status
 
   React.useEffect(() => {
     setLoading(true)
     try{
-    fetch(`https://${url}`,
-    {
-      method: "GET",
-      mode: "no-cors",
-      cache: "no-cache",
-      referrerPolicy: "no-referrer"
-    })
-    .then(res =>  setStatus(isOk(res)))
+    fetch(`/ping?url=${url}`)
+    .then(res =>  res.json())
+    .then(data => setStatus(isOk(data)))
     .catch(_err => setStatus(false))
-    .finally(() => setLoading(false))
+    .finally(() => {
+      setLoading(false)
+      setFetched(true)
+    })
   }catch(err){
-    alert(JSON.stringify(err))
+    console(JSON.stringify(err))
   }
   }, [])
 
@@ -40,7 +39,7 @@ export default function ListItem(props){
   </div>
   <div className="flex items-center gap-x-4">
     {loading && <Loader />}
-    {!loading && <Status status={status} />}
+    {!loading && fetched && <Status status={status} />}
   </div>
 </li>
 }
