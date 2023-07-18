@@ -1,6 +1,6 @@
 {
   "sites": [
-    { "site": "www.samoagovt.ws/", "name": "Government of Samoa"},
+    { "site": "www.samoagovt.ws", "name": "Government of Samoa"},
     { "site": "www.psc.gov.ws", "name": "Samoa Public Service Commission" },
     { "site": "www.audit.gov.ws", "name": "Samoa Audit Office" },
     { "site": "www.ag.gov.ws", "name": "Office of the Attorney General" },
