@@ -2,6 +2,9 @@
 
 Checks the online statuses of Samoan government websites.
 
+![image](https://github.com/westerandr/govt-site-checker/assets/20700150/7d4c17a3-fb9f-4741-9c06-fb8a2bec8e5b)
+
+
 ## List of Government Ministries
 
 * Samoa Public Service Commission
@@ -49,4 +52,4 @@ Checks the online statuses of Samoan government websites.
 
 Open an issue or contact <andrewest_04@hotmail.com>
 
-Built with Astro & Inspired by [AWS Cloudping](https://www.cloudping.cloud/aws)
+Built with [Astro](https://astro.build/) & Inspired by [AWS Cloudping](https://www.cloudping.cloud/aws)
