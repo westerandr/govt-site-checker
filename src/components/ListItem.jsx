@@ -3,10 +3,10 @@ import Loader from './Loader.jsx'
 import Status from './Status.jsx'
 
 export default function ListItem(props){
+  const { title, url, refresh } = props
   const [loading, setLoading] = React.useState(false);
   const [fetched, setFetched] = React.useState(false)
   const [status, setStatus] = React.useState(false);
-  const { title, url } = props
 
   const isOk = (data) => data.status
 
@@ -24,7 +24,7 @@ export default function ListItem(props){
   }catch(err){
     console(JSON.stringify(err))
   }
-  }, [])
+  }, [refresh])
 
   return <li className="relative flex justify-between gap-x-6 mb-3">
   <div className="flex gap-x-4">

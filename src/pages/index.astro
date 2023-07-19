@@ -1,13 +1,14 @@
 ---
+export const prerender = true;
 import Layout from '../layouts/Layout.astro';
-import List from '../components/List.astro';
+import List from '../components/List.jsx';
 import Contact from '../components/Contact.astro'
 ---
 
 <Layout title="Samoa Govt Site Checker">
-	<main class="container min-h-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-		<h1 class="text-3xl text-bold text-center mb-8 md:mb-12 lg:mb-20">Samoa Govt Site Checker</h1>
-		<List />
+	<main class="container min-h-full flex justify-center items-center flex-col  mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+		<h1 class="text-3xl text-bold text-center mb-4 md:mb-7 lg:mb-12">Samoa Govt Site Checker</h1>
+		<List client:load />
 		<Contact />
 	</main>
 </Layout>
