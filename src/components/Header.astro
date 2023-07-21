@@ -1,7 +1,6 @@
 ---
 export const prerender = true;
 import { Image } from "@astrojs/image/components";
-import logo from "../assets/logo.png";
 ---
 
 <header class="bg-slate-800 w-full mb-9">
@@ -12,7 +11,7 @@ import logo from "../assets/logo.png";
           <div class="flex-shrink-0">
             <Image
               class="block h-11 w-11"
-              src={logo}
+              src="/logo.png"
               alt="Govt Site Checker Logo"
             />
           </div>
