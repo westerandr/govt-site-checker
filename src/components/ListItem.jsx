@@ -7,13 +7,13 @@ export default function ListItem(props){
   const [loading, setLoading] = React.useState(false);
   const [fetched, setFetched] = React.useState(false)
   const [status, setStatus] = React.useState(false);
-
+  const functionsEndPoint = '/.netlify/functions/ping'
   const isOk = (data) => data.status
 
   React.useEffect(() => {
     setLoading(true)
     try{
-    fetch(`/ping?url=${url}`)
+    fetch(`${functionsEndPoint}?${new URLSearchParams({ url })}`)
     .then(res =>  res.json())
     .then(data => setStatus(isOk(data)))
     .catch(_err => setStatus(false))
