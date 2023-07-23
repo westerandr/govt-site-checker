@@ -1,6 +1,9 @@
 import type { Handler, HandlerEvent, HandlerContext } from "@netlify/functions";
 import { probe } from "@network-utils/tcp-ping";
 
+const PORT = 80
+const TIMEOUT = 3000
+
 const handler: Handler = async (event: HandlerEvent, context: HandlerContext) => {
   const url = event.queryStringParameters?.url
   if(!url){
@@ -10,7 +13,7 @@ const handler: Handler = async (event: HandlerEvent, context: HandlerContext) =>
     }
   }
 
-  const online = await probe(80, url);
+  const online = await probe(PORT, url, TIMEOUT);
 
   return {
     statusCode: 200,
