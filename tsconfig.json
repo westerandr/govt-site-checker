@@ -4,6 +4,9 @@
     "jsx": "react-jsx",
     "jsxImportSource": "react",
     "esModuleInterop": true,
-    "verbatimModuleSyntax": true
+    "verbatimModuleSyntax": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   }
 }
