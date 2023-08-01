@@ -2,12 +2,14 @@
   "name": "govt-sites-status-checker",
   "type": "module",
   "version": "0.0.1",
+  "license": "MIT",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test": "vitest"
   },
   "dependencies": {
     "@astrojs/image": "^0.17.2",
@@ -25,6 +27,7 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",
-    "daisyui": "^3.1.10"
+    "daisyui": "^3.1.10",
+    "vitest": "^0.33.0"
   }
 }
