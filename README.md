@@ -2,6 +2,8 @@
 
 Checks the online availability of Samoan government and related association websites.
 
+[www.samoagov.online](https://www.samoagov.online)
+
 ![image](https://github.com/westerandr/govt-site-checker/assets/20700150/7d4c17a3-fb9f-4741-9c06-fb8a2bec8e5b)
 
 ## List of Government Ministries
