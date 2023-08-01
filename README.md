@@ -1,9 +1,8 @@
 # Samoa Government Sites Checker
 
-Checks the online statuses of Samoan government websites.
+Checks the online availability of Samoan government and related association websites.
 
 ![image](https://github.com/westerandr/govt-site-checker/assets/20700150/7d4c17a3-fb9f-4741-9c06-fb8a2bec8e5b)
-
 
 ## List of Government Ministries
 
@@ -47,6 +46,37 @@ Checks the online statuses of Samoan government websites.
 * Scientific Research Organization of Samoa
 * Unit Trust of Samoa
 * Central Bank of Samoa
+
+## Technology
+
+* Astro Web Framework
+* React
+* Netlify Functions
+* Tailwind CSS
+
+## Roadmap
+
+* Add E2E Tests
+* Add Latency
+* Sort List Items dynamically i.e. shuffle offline sites to the top
+* Show iframe of website on hover
+
+## Contribution
+
+We welcome contributions from the community! If you'd like to contribute to the Samoa Govt Site Checker, please follow refer to [CONTRIBUTING.md](./CONTRIBUTING.md), but we have these base guidelines:
+
+* Fork the repository.
+* Create a new branch for your feature or bug fix.
+* Make your changes and test thoroughly.
+* Commit your changes with clear commit messages.
+* Push your branch to your forked repository.
+* Submit a pull request detailing your changes.
+
+Please ensure that your code adheres to the project's coding standards and conventions.
+
+## License
+
+The Samoa Govt Site Checker is licensed under the MIT License. Feel free to use, modify, and distribute the code as per the terms of the license.
 
 ## Missing your website?
 
