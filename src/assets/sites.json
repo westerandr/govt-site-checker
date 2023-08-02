@@ -41,6 +41,10 @@
     { "site": "www.sros.org.ws", "name": "Scientific Research Organization of Samoa" },
     { "site": "www.utos.ws", "name": "Unit Trust of Samoa"},
     { "site": "www.cbs.gov.ws", "name": "Central Bank of Samoa" },
-    { "site": "www.samoapolice.ws", "name": "Samoa Police Prisons & Corrections Services" }
+    { "site": "www.samoapolice.ws", "name": "Ministry of Police and Prisons" },
+    { "site": "www.npf.ws", "name": "Samoa National Provident Fund" },
+    { "site": "www.sita.ws", "name": "Samoa Information Technology Association" },
+    { "site": "www.mnre.gov.ws", "name": "Ministry of Natural Resources and Environment" },
+    { "site": "www.mwti.gov.ws", "name": "Ministry of Works, Transport and Infrastructure" }
   ]
 }
