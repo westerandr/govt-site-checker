@@ -59,7 +59,7 @@ Checks the online availability of Samoan government and related association webs
 ## Roadmap
 
 * Add E2E Tests
-* Add Latency
+* ~~Add Latency~~
 * Sort List Items dynamically i.e. shuffle offline sites to the top
 * Show iframe of website on hover
 
