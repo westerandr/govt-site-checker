@@ -1,27 +1,38 @@
 import React from 'react'
 import Loader from './Loader.jsx'
 import Status from './Status.jsx'
+import { updateSite, getSiteData, refresh } from '../stores/sites.js';
+import { useStore } from '@nanostores/react';
 
-export default function ListItem(props) {
+const ListItem = React.memo((props) => {
   const ENV = import.meta.env.MODE;
-  const { title, url, refresh } = props
+  const { id, title, url } = props
+  const siteData = getSiteData(id)
   const [loading, setLoading] = React.useState(false);
-  const [fetched, setFetched] = React.useState(false)
-  const [status, setStatus] = React.useState(false);
-  const [latency, setLatency] = React.useState(-1);
+  const [fetched, setFetched] = React.useState(siteData?.fetched)
+  const [status, setStatus] = React.useState(siteData?.status);
+  const [latency, setLatency] = React.useState(siteData?.latency);
   const functionsEndPoint = ENV === 'development' ? 'http://localhost:3000/api' :'/.netlify/functions/ping'
   const isOk = (data) => data.status
+  const refreshStore = useStore(refresh)
+  console.log('render', id)
+  if (!title || !url) return null
 
   React.useEffect(() => {
+    if(fetched && !refreshStore) return
     setLoading(true)
     try{
     fetch(`${functionsEndPoint}?${new URLSearchParams({ url })}`)
     .then(res =>  res.json())
     .then(data => {
        setLatency(data.latency)
-       setStatus(isOk(data))
+      setStatus(isOk(data))
+      updateSite(id, { status: isOk(data), latency: data.latency, fetched: true })
     })
-    .catch(_err => setStatus(false))
+      .catch(_err => {
+        setStatus(false)
+        updateSite(id, { status: false, latency: null, fetched: true })
+      })
     .finally(() => {
       setLoading(false)
       setFetched(true)
@@ -29,7 +40,7 @@ export default function ListItem(props) {
   }catch(err){
     console(JSON.stringify(err))
   }
-  }, [refresh])
+  }, [refreshStore])
 
   return <li className="relative flex justify-between gap-x-6 mb-3">
   <div className="flex gap-x-4">
@@ -49,4 +60,6 @@ export default function ListItem(props) {
     {!loading && fetched && <Status latency={latency} status={status} />}
   </div>
 </li>
-}
+})
+
+export default ListItem

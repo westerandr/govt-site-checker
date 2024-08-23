@@ -4,8 +4,8 @@ const app = express();
 
 const SERVER_PORT = 3000
 const PORT = 80
-const TIMEOUT = 10000
-const ATTEMPTS = 3
+const TIMEOUT = 2000
+const ATTEMPTS = 1
 
 app.use((_req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
