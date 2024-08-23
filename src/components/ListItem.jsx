@@ -1,8 +1,10 @@
 import React from 'react'
 import Loader from './Loader.jsx'
 import Status from './Status.jsx'
+// get env type
 
-export default function ListItem(props){
+export default function ListItem(props) {
+  const ENV = import.meta.env.MODE;
   const { title, url, refresh } = props
   const [loading, setLoading] = React.useState(false);
   const [fetched, setFetched] = React.useState(false)
@@ -13,8 +15,9 @@ export default function ListItem(props){
 
   React.useEffect(() => {
     setLoading(true)
+    const link = ENV === 'development' ? url : `${functionsEndPoint}?${new URLSearchParams({ url })}`
     try{
-    fetch(`${functionsEndPoint}?${new URLSearchParams({ url })}`)
+    fetch(link)
     .then(res =>  res.json())
     .then(data => {
        setLatency(data.latency)
