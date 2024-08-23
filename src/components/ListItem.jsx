@@ -1,7 +1,6 @@
 import React from 'react'
 import Loader from './Loader.jsx'
 import Status from './Status.jsx'
-// get env type
 
 export default function ListItem(props) {
   const ENV = import.meta.env.MODE;
@@ -10,14 +9,13 @@ export default function ListItem(props) {
   const [fetched, setFetched] = React.useState(false)
   const [status, setStatus] = React.useState(false);
   const [latency, setLatency] = React.useState(-1);
-  const functionsEndPoint = '/.netlify/functions/ping'
+  const functionsEndPoint = ENV === 'development' ? 'http://localhost:3000/api' :'/.netlify/functions/ping'
   const isOk = (data) => data.status
 
   React.useEffect(() => {
     setLoading(true)
-    const link = ENV === 'development' ? url : `${functionsEndPoint}?${new URLSearchParams({ url })}`
     try{
-    fetch(link)
+    fetch(`${functionsEndPoint}?${new URLSearchParams({ url })}`)
     .then(res =>  res.json())
     .then(data => {
        setLatency(data.latency)
