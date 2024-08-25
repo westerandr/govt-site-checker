@@ -29,7 +29,7 @@ export const updateSite = (id, data) => {
   allSites.set(allSites.get().filter((site) => site.id !== id));
   if (data.status) {
     if (!onlineSites.get().find((site) => site.id === id)) {
-      onlineSites.set([...onlineSites.get(), updatedSite].sort((a, b) => a.latency - b.latency));
+      onlineSites.set([...onlineSites.get(), updatedSite]);
     }
   } else {
     if (!offlineSites.get().find((site) => site.id === id)) {

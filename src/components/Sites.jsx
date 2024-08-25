@@ -20,6 +20,14 @@ export default function Sites() {
     }
   }, [refreshStore])
 
+  // check when online
+  React.useEffect(() => {
+    if (onlineSitesStore.length > 0 && offlineSitesStore.every(site => site.fetched)) {
+      console.log('All sites fetched')
+      onlineSites.set(onlineSitesStore.sort((a, b) => a.latency - b.latency))
+    }
+  }, [onlineSitesStore])
+
 
   return <div className='flex flex-col justify-center items-center'>
     <button disabled={refreshStore} onClick={() => refreshSites()} className="btn bg-slate-800 text-white mb-8 w-36 hover:bg-slate-500">
