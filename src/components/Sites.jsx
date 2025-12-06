@@ -1,14 +1,18 @@
 import React from 'react'
 import { useStore } from '@nanostores/react'
 
-import { allSites, offlineSites, onlineSites, refresh, refreshSites } from '../stores/sites.js'
+import { allSites, offlineSites, onlineSitesOrdered, onlineSitesUnordered, refresh, refreshSites } from '../stores/sites.js'
 import List from './List.jsx'
 
 export default function Sites() {
   const allSitesStore = useStore(allSites)
   const offlineSitesStore = useStore(offlineSites)
-  const onlineSitesStore = useStore(onlineSites)
+  const onlineSitesOrderedStore = useStore(onlineSitesOrdered)
+  const onlineSitesUnorderedStore = useStore(onlineSitesUnordered)
   const refreshStore = useStore(refresh)
+  
+  // Combine ordered and unordered for display
+  const onlineSitesStore = [...onlineSitesOrderedStore, ...onlineSitesUnorderedStore]
 
   React.useEffect(() => {
     let duration;
@@ -19,14 +23,6 @@ export default function Sites() {
       if (duration) clearTimeout(duration)
     }
   }, [refreshStore])
-
-  // check when online
-  React.useEffect(() => {
-    if (onlineSitesStore.length > 0 && offlineSitesStore.every(site => site.fetched)) {
-      console.log('All sites fetched')
-      onlineSites.set(onlineSitesStore.sort((a, b) => a.latency - b.latency))
-    }
-  }, [onlineSitesStore])
 
 
   return <div className='flex flex-col justify-center items-center'>
