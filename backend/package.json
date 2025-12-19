@@ -1,0 +1,21 @@
+{
+  "name": "govt-sites-backend",
+  "type": "module",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "worker": "node src/worker.js",
+    "worker:dev": "nodemon src/worker.js"
+  },
+  "dependencies": {
+    "@network-utils/tcp-ping": "^1.2.3",
+    "express": "^4.19.2",
+    "node-cron": "^3.0.3",
+    "puppeteer": "^24.32.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}

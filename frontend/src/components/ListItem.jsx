@@ -36,8 +36,8 @@ const ListItem = React.memo((props) => {
   const itemRef = React.useRef(null);
   const prevIndexRef = React.useRef(index);
   const [isSorting, setIsSorting] = React.useState(false);
-  const functionsEndPoint = ENV === 'development' ? 'http://localhost:3000/api' :'/.netlify/functions/ping'
-  const snapshotEndPoint = ENV === 'development' ? 'http://localhost:3000/api/snapshot' : '/api/snapshot'
+  const functionsEndPoint = 'http://localhost:3000/api'
+  const snapshotEndPoint = 'http://localhost:3000/api/snapshot'
   const isOk = (data) => data.status
   const refreshStore = useStore(refresh)
   if (!title || !url) return null

@@ -1,14 +1,13 @@
-import { handler } from '../netlify/functions/ping'
 import { assert, expect, test, it } from 'vitest';
 
-test('ping function', async () => {
+test('ping API endpoint', async () => {
   it('www.google.com should be online', async () => {
-    const res = await handler({ queryStringParameters: { url: "www.google.com"} }, null)
-    const { statusCode, body } = res
-    const json = JSON.parse(body)
-    expect(statusCode).toEqual(200)
-    assert.isTrue(json.status)
-    assert.isBelow(json.latency, 100)
-  })
-})
+    const baseUrl = process.env.API_URL || 'http://localhost:3000';
+    const res = await fetch(`${baseUrl}/api?url=www.google.com`);
+    const json = await res.json();
+    expect(res.status).toEqual(200);
+    assert.isTrue(json.status);
+    assert.isBelow(json.latency, 100);
+  });
+});
 

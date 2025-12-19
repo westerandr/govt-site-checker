@@ -18,13 +18,33 @@ npm install
 
 ## Development
 
-First, run the development server:
+### Backend Setup
+
+1. Install backend dependencies:
 
 ```bash
-npm run server
+cd backend
+npm install
 ```
 
-Then, run the web app:
+2. Start the API server:
+
+```bash
+npm run dev
+# or from root: npm run backend:dev
+```
+
+3. In a separate terminal, start the background worker (for scheduled snapshots):
+
+```bash
+cd backend
+npm run worker
+# or from root: npm run backend:worker
+```
+
+### Frontend Setup
+
+Run the web app:
 
 ```bash
 npm run dev
@@ -82,7 +102,9 @@ Open [http://localhost:4321](http://localhost:4321) with your browser to see the
 
 * Astro Web Framework
 * React
-* Netlify Functions
+* Express.js (Backend API)
+* Node-cron (Scheduled tasks)
+* Puppeteer (Website snapshots)
 * Tailwind CSS
 
 ## Roadmap
