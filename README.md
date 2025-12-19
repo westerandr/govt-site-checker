@@ -6,6 +6,49 @@ Checks the online availability of Samoan government and related association webs
 
 ![image](https://github.com/westerandr/govt-site-checker/assets/20700150/7d4c17a3-fb9f-4741-9c06-fb8a2bec8e5b)
 
+## Running Locally
+
+1. Clone the repo and install dependencies
+
+```bash
+git clone https://github.com/westerandr/govt-site-checker.git
+cd govt-site-checker
+npm install
+```
+
+## Development
+
+### Backend Setup
+
+1. Install backend dependencies:
+
+```bash
+cd backend
+npm install
+```
+
+2. Start the API server:
+
+```bash
+npm run dev
+# or from root: npm run backend:dev
+```
+
+The server will automatically capture snapshots for all sites on startup (runs in background).
+
+### Frontend Setup
+
+Run the web app:
+
+```bash
+npm run dev
+```
+
+
+
+Open [http://localhost:4321](http://localhost:4321) with your browser to see the result.
+
+
 ## List of Government Ministries
 
 * Samoa Public Service Commission
@@ -53,7 +96,8 @@ Checks the online availability of Samoan government and related association webs
 
 * Astro Web Framework
 * React
-* Netlify Functions
+* Express.js (Backend API)
+* Puppeteer (Website snapshots)
 * Tailwind CSS
 
 ## Roadmap
