@@ -18,7 +18,25 @@ jobs:
           npm install
           cd frontend && npm ci
           cd ../backend && npm ci
+      - name: Start Backend Server
+        run: |
+          cd backend
+          npm start > /tmp/backend.log 2>&1 &
+          echo $! > /tmp/backend.pid
+          echo "Backend server starting in background (PID: $(cat /tmp/backend.pid))"
+          # Give server a moment to start, tests will wait for it to be ready
+          sleep 3
       - name: Run Tests
-        run: npm run test
+        run: |
+          npm run test:backend
+          npm run test:frontend
+          echo "Tests completed successfully"
+      - name: Stop Backend Server
+        if: always()
+        run: |
+          if [ -f /tmp/backend.pid ]; then
+            kill $(cat /tmp/backend.pid) 2>/dev/null || true
+          fi
+          pkill -f "node.*server.js" || true
       - name: Build
         run: npm run build
