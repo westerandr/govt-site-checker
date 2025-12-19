@@ -1,7 +1,7 @@
 import express from 'express';
 import { ping } from '@network-utils/tcp-ping';
-import snapshotCache, { isInFailureCooldown, getFailureInfo } from './cache/snapshotCache.js';
-import { captureSnapshotForUrl } from './jobs/snapshotJob.js';
+import snapshotCache, { isInFailureCooldown, getFailureInfo, FAILURE_COOLDOWN_MS } from './cache/snapshotCache.js';
+import { captureSnapshotForUrl, captureAllSnapshots } from './jobs/snapshotJob.js';
 
 const app = express();
 
@@ -56,7 +56,7 @@ app.get('/api/snapshot', async (req, res) => {
       return res.status(503).json({ 
         error: 'Snapshot capture failed recently',
         message: `Snapshot capture failed ${minutesAgo} minute(s) ago. Please try again later.`,
-        retryAfter: failureInfo.timestamp + 600000 - Date.now() // milliseconds until cooldown expires
+        retryAfter: failureInfo.timestamp + FAILURE_COOLDOWN_MS - Date.now() // milliseconds until cooldown expires
       });
     }
 
@@ -78,6 +78,29 @@ app.get('/api/snapshot', async (req, res) => {
   }
 });
 
-app.listen(SERVER_PORT, () => {
-  console.log(`API Server listening on port ${SERVER_PORT}`);
-});
+// Initialize snapshot capture on startup (non-blocking)
+async function initializeSnapshots() {
+  console.log('Starting initial snapshot capture for all sites...');
+  try {
+    // Run in background, don't wait for completion
+    captureAllSnapshots().catch(err => {
+      console.error('Error during initial snapshot capture:', err);
+    });
+  } catch (err) {
+    console.error('Error starting initial snapshot capture:', err);
+  }
+}
+
+// Start the server
+async function startServer() {
+  // Initialize snapshots on startup (runs in background)
+  initializeSnapshots();
+  
+  // Start the web server
+  app.listen(SERVER_PORT, () => {
+    console.log(`API Server listening on port ${SERVER_PORT}`);
+    console.log('Snapshot capture initialized on startup');
+  });
+}
+
+startServer();

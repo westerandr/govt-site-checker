@@ -34,13 +34,7 @@ npm run dev
 # or from root: npm run backend:dev
 ```
 
-3. In a separate terminal, start the background worker (for scheduled snapshots):
-
-```bash
-cd backend
-npm run worker
-# or from root: npm run backend:worker
-```
+The server will automatically capture snapshots for all sites on startup (runs in background).
 
 ### Frontend Setup
 
@@ -103,7 +97,6 @@ Open [http://localhost:4321](http://localhost:4321) with your browser to see the
 * Astro Web Framework
 * React
 * Express.js (Backend API)
-* Node-cron (Scheduled tasks)
 * Puppeteer (Website snapshots)
 * Tailwind CSS
 
