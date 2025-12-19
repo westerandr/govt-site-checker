@@ -15,9 +15,10 @@ jobs:
           node-version: 18
       - name: Install Dependencies
         run: |
+          npm install
           cd frontend && npm ci
           cd ../backend && npm ci
       - name: Run Tests
-        run: cd frontend && npm run test
+        run: npm run test
       - name: Build
         run: npm run build

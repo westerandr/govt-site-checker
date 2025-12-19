@@ -6,6 +6,9 @@
   "scripts": {
     "install": "cd frontend && npm install && cd ../backend && npm install",
     "build": "cd frontend && npm run build",
+    "test": "concurrently \"npm run test:frontend\" \"npm run test:backend\"",
+    "test:frontend": "cd frontend && npm run test",
+    "test:backend": "cd backend && npm run test",
     "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
     "start:backend": "cd backend && npm start",
     "start:frontend": "cd frontend && npm run preview"
