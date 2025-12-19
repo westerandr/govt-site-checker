@@ -1,6 +1,7 @@
 import puppeteer from 'puppeteer';
 
-const WAIT_UNTIL = 'networkidle2';
+const VIEWPORT_WIDTH = 1280;
+const VIEWPORT_HEIGHT = 720;
 const TIMEOUT = 10000;
 
 // Helper function to delay execution
@@ -30,39 +31,25 @@ export async function captureSnapshot(url) {
     });
     
     // Set viewport size for consistent snapshots
-    await page.setViewport({ width: 1280, height: 720 });
+    await page.setViewport({ width: VIEWPORT_WIDTH, height: VIEWPORT_HEIGHT });
     
     // Navigate to the website with increased timeout and more lenient wait strategy
     try {
       await page.goto(`https://${url}`, { 
-        waitUntil: WAIT_UNTIL,
+        waitUntil: 'networkidle2',
         timeout: TIMEOUT
       });
     } catch (error) {
-      // If domcontentloaded fails, try with load event
-      try {
         await page.goto(`https://${url}`, {
           waitUntil: 'load',
           timeout: TIMEOUT
         });
-      } catch (retryError) {
-        // If both fail, try with networkidle2 (most lenient valid option)
-        await page.goto(`https://${url}`, {
-          waitUntil: 'networkidle2', // Wait until no more than 2 network connections
-          timeout: TIMEOUT
-        });
-      }
     }
-    
-    // Wait a bit for any dynamic content to load
-    await delay(2000);
-    
-    // Capture screenshot as base64 compressed PNG
     const screenshot = await page.screenshot({
       type: 'png',
       encoding: 'base64',
-      fullPage: false, // Only capture viewport
-      clip: { x: 0, y: 0, width: 1280, height: 720 }
+      fullPage: false,
+      clip: { x: 0, y: 0, width: VIEWPORT_WIDTH, height: VIEWPORT_HEIGHT }
     });
     
     return `data:image/png;base64,${screenshot}`;
