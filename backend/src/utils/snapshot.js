@@ -1,5 +1,8 @@
 import puppeteer from 'puppeteer';
 
+const WAIT_UNTIL = 'networkidle2';
+const TIMEOUT = 10000;
+
 // Helper function to delay execution
 const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -32,21 +35,21 @@ export async function captureSnapshot(url) {
     // Navigate to the website with increased timeout and more lenient wait strategy
     try {
       await page.goto(`https://${url}`, { 
-        waitUntil: 'domcontentloaded', // More lenient than 'networkidle0'
-        timeout: 30000 // Increased from 10s to 30s
+        waitUntil: WAIT_UNTIL,
+        timeout: TIMEOUT
       });
     } catch (error) {
       // If domcontentloaded fails, try with load event
       try {
         await page.goto(`https://${url}`, {
           waitUntil: 'load',
-          timeout: 30000
+          timeout: TIMEOUT
         });
       } catch (retryError) {
         // If both fail, try with networkidle2 (most lenient valid option)
         await page.goto(`https://${url}`, {
           waitUntil: 'networkidle2', // Wait until no more than 2 network connections
-          timeout: 30000
+          timeout: TIMEOUT
         });
       }
     }

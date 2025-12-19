@@ -6,7 +6,7 @@ const snapshotCache = new Map();
 const failureCache = new Map();
 
 // Cooldown period in milliseconds (default: 10 minutes)
-const FAILURE_COOLDOWN_MS = parseInt(process.env.SNAPSHOT_FAILURE_COOLDOWN_MS || '600000', 10);
+export const FAILURE_COOLDOWN_MS = parseInt(process.env.SNAPSHOT_FAILURE_COOLDOWN_MS || '600000', 10);
 
 /**
  * Check if a URL has failed recently and is still in cooldown
