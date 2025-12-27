@@ -5,11 +5,13 @@ import SnapshotTooltip from './SnapshotTooltip.jsx'
 import { updateSite, getSiteData, refresh } from '../stores/sites.js';
 import { useStore } from '@nanostores/react';
 
+const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
+
 // Shared position tracker for FLIP animations
 const positionMap = new Map();
 
 const ListItem = React.memo((props) => {
-  const ENV = import.meta.env.MODE;
+const PUBLIC_API_URL = import.meta.env.PUBLIC_API_URL;
   const { id, title, url, listType, index, site: siteFromProps } = props
   // Use site data from props if available, otherwise fall back to getSiteData
   const siteData = siteFromProps || getSiteData(id)
@@ -36,8 +38,8 @@ const ListItem = React.memo((props) => {
   const itemRef = React.useRef(null);
   const prevIndexRef = React.useRef(index);
   const [isSorting, setIsSorting] = React.useState(false);
-  const functionsEndPoint = 'http://localhost:3000/api'
-  const snapshotEndPoint = 'http://localhost:3000/api/snapshot'
+  const functionsEndPoint = `${PUBLIC_API_URL}`
+  const snapshotEndPoint = `${PUBLIC_API_URL}/snapshot`
   const isOk = (data) => data.status
   const refreshStore = useStore(refresh)
   if (!title || !url) return null
@@ -78,7 +80,7 @@ const ListItem = React.memo((props) => {
   });
 
   // Animate position changes (FLIP technique)
-  React.useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (itemRef.current && listType === 'online' && !isFirstRenderRef.current) {
       const element = itemRef.current;
       const prevPosition = positionMap.get(id);
