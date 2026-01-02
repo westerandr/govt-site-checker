@@ -1,0 +1,51 @@
+name: Deploy to VM
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to VM
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER}}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            # Go to project directory
+            cd /home/${{ secrets.SSH_USER }}/govt-site-checker || mkdir -p /home/${{ secrets.SSH_USER }}/govt-site-checker && cd /home/${{ secrets.SSH_USER }}/govt-site-checker
+
+            # Pull latest code
+            if [ -d ".git" ]; then
+              git pull origin main
+            else
+              git clone ${{ github.repositoryUrl }} .
+              git checkout main
+            fi
+
+            # Install dependencies
+            cd frontend
+            npm ci
+            echo "PUBLIC_API_URL=${{ secrets.PUBLIC_API_URL }}" > .env.production
+            npm run build
+            cd ..
+
+            cd backend
+            npm ci
+            cd ..
+
+            sudo rsync -av --delete frontend/dist/ /var/www/govt-site-checker/
+
+            cd backend
+            pm2 restart api || pm2 start server.js --name api --update-env
+            pm2 save
+
+            sudo systemctl reload nginx
+
+            echo "Deployment successful"

@@ -12,14 +12,25 @@ export async function captureSnapshot(url) {
   let browser;
   try {
     browser = await puppeteer.launch({
-      headless: true,
+      headless: 'new',
       args: [
-        '--no-sandbox', 
-        '--disable-setuid-sandbox', 
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
         '--disable-dev-shm-usage',
+        '--disable-gpu',
+        '--disable-software-rasterizer',
+        '--disable-extensions',
+        '--disable-background-networking',
+        '--disable-sync',
+        '--disable-translate',
+        '--metrics-recording-only',
+        '--mute-audio',
+        '--no-first-run',
+        '--safebrowsing-disable-auto-update',
         '--ignore-certificate-errors',
         '--ignore-certificate-errors-spki-list',
-        '--ignore-ssl-errors'
+        '--ignore-ssl-errors',
+        '--single-process',
       ],
       ignoreHTTPSErrors: true
     });

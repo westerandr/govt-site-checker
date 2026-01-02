@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import express from 'express';
 import { ping } from '@network-utils/tcp-ping';
 import snapshotCache, { isInFailureCooldown, getFailureInfo, FAILURE_COOLDOWN_MS } from './cache/snapshotCache.js';
