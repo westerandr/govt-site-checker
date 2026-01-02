@@ -40,7 +40,7 @@ jobs:
             npm ci
             cd ..
 
-            sudo rsync -av --delete frontend/dist/ /var/www/govt-site-checker/
+            sudo rsync -av --delete --chown=www-data:www-data frontend/dist/ /var/www/govt-site-checker/
 
             cd backend
             pm2 restart api || pm2 start server.js --name api --update-env
