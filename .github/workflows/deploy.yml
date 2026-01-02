@@ -33,7 +33,7 @@ jobs:
             cd frontend
             npm ci
             echo "PUBLIC_API_URL=${{ secrets.PUBLIC_API_URL }}" > .env.production
-            rm -rf dist
+            sudo rm -rf dist
             npm run build
             cd ..
 
