@@ -56,7 +56,6 @@ export default function SitesLayout({ refreshStore, refreshSites }) {
         </button>
       </div>
       <div>
-        {allSitesStore.length > 0 && <List name="All Sites" sites={allSitesStore} searchTerm={searchTerm} />}
         {showOfflineSection && (
           <>
               <span className="relative flex justify-center">
@@ -76,6 +75,7 @@ export default function SitesLayout({ refreshStore, refreshSites }) {
             <List name="Online Sites" sites={onlineSitesStore} searchTerm={searchTerm} />
           </>
         )}
+        {allSitesStore.length > 0 && <List name="All Sites" sites={allSitesStore} searchTerm={searchTerm} />}
       </div>
     </div>
   )
