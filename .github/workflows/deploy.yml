@@ -41,8 +41,10 @@ jobs:
             npm ci
             cd ..
             cd backend
-            pm2 restart api || pm2 start ecosystem.config.js --env production --name api --update-env
+            pm2 reload ecosystem.config.cjs || pm2 start ecosystem.config.cjs --env production --name api --update-env
             pm2 save
+
+            cd ..
 
             sudo rsync -av --delete --chown=www-data:www-data frontend/dist/ /var/www/govt-site-checker/
 
