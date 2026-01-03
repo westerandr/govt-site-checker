@@ -33,19 +33,19 @@ jobs:
             cd frontend
             npm ci
             echo "PUBLIC_API_URL=${{ secrets.PUBLIC_API_URL }}" > .env.production
-            sudo rm -rf dist
-            npm run build
+            rm -rf dist
+            NODE_ENV=production PUBLIC_API_URL=${{ secrets.PUBLIC_API_URL }} npm run build
             cd ..
 
             cd backend
             npm ci
             cd ..
+            cd backend
+            pm2 restart api || pm2 start ecosystem.config.js --env production --name api --update-env
+            pm2 save
 
             sudo rsync -av --delete --chown=www-data:www-data frontend/dist/ /var/www/govt-site-checker/
 
-            cd backend
-            pm2 restart api || pm2 start server.js --name api --update-env
-            pm2 save
 
             sudo systemctl reload nginx
 

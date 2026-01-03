@@ -1,3 +1,4 @@
+require('dotenv').config();
 // Production environment variables for backend pm2 process manager
 module.exports = {
   apps: [
@@ -6,7 +7,7 @@ module.exports = {
       script: 'src/server.js',
       env: {
         NODE_ENV: 'production',
-        PORT: 5000
+        PORT: process.env.BACKEND_PORT || 5000
       },
 
     }
